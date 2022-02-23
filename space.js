@@ -133,7 +133,7 @@ class RailroadSpace extends Space {
             fill(0);
             textAlign(CENTER);
             textSize(20);
-            text("Bingus Rail", 0 , -10);
+            text("Rail", 0 , -10);
             text("$200", 0 , 10);
 
             pop();
@@ -146,7 +146,8 @@ class RailroadSpace extends Space {
             fill(0);
 
             textSize(20);
-            print("AAAAAAHHHHHHHHHHHHHHHH");
+            text("Rail", 0 , -10);
+            text("$200", 0 , 10);
 
             pop();
 
@@ -336,9 +337,11 @@ class ChanceSpace extends Space {
             translate(this.x, this.y + 5);
             fill(0);
 
-            textSize(20);
-            //text("Community", 0 , -10);
-            //text("Chest", 0 , 10);
+            textSize(16);
+            text("Chance", 0 , -10);
+            fill(255,20,147);
+            textSize(40);
+            text("?", 0 , 25);
 
             pop();
 
@@ -387,9 +390,9 @@ class CommunityChestSpace extends Space {
             translate(this.x, this.y + 5);
             fill(0);
 
-            textSize(20);
-            //text("Community", 0 , -10);
-            //text("Chest", 0 , 10);
+            textSize(11);
+            text("Community", 0 , -10);
+            text("Chest", 0 , 10);
 
             pop();
 
@@ -464,6 +467,24 @@ class GoToJailSpace extends Space {
 
     }
 
+    draw() {
+
+        push();
+        textAlign(CENTER);
+        translate(this.x, this.y);
+        fill(0);
+
+        textSize(20);
+        text("Go To", 0, 0);
+        text("JAIL", 0, 20);
+
+        pop();
+        
+            
+    }
+
+    
+
 
 }
 
@@ -492,6 +513,8 @@ class JailSpace extends Space {
             
     }
 
+    
+
 
 }
 
@@ -502,6 +525,22 @@ class FreeParkingSpace extends Space {
 
         super(position, visualPositionX, visualPositionY, type);
 
+    }
+
+    draw() {
+
+        push();
+        textAlign(CENTER);
+        translate(this.x, this.y);
+        fill(0);
+
+        textSize(20);
+        text("FREE", 0, 0);
+        text("Parking", 0, 20);
+
+        pop();
+        
+            
     }
 
 
