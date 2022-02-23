@@ -86,7 +86,8 @@ class Board {
         this.spaceList[10] = new JailSpace(10, (0 + width / 13), ((height * 2) / 13 - height / 13), "corner");
         this.spaceList[11] = new ColoredStreetsSpace(11, ((width * 2) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[5]);
         this.spaceList[12] = new TaxSpace(11, ((width * 3) / 13 + width / 26), ((height * 1) / 13), "vertical");
-
+        this.spaceList[13] = new ColoredStreetsSpace(12, ((width * 4) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[6]);
+        this.spaceList[14] = new ColoredStreetsSpace(13, ((width * 5) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[7]);
         
     }
 

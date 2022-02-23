@@ -1,6 +1,6 @@
 class Space {
 
-    //position, visualPositionX, visualPositionY, type
+    //position, visualPositionX, visualPositionY, type = corner/vandret/lodret
     constructor(position, visualPositionX, visualPositionY, type) {
 
         this.position = position;
@@ -38,7 +38,7 @@ class Space {
             rectMode(CENTER);
             fill(191, 219, 174);
             strokeWeight(2);
-            rect(this.x, this.y, (width / 13) * 2, (height / 13) * 2 + 3);
+            rect(this.x, this.y, (width / 13) * 2, (height / 13) * 2);
             pop();
 
         } else if(this.type == "horizontal") {
@@ -228,7 +228,7 @@ class ColoredStreetsSpace extends Space {
             this.color.setAlpha(255);
             fill(this.color);
             strokeWeight(2);
-            rect(0, -28, (width / 13) * 2, 10);
+            rect(0, -25, (width / 13) * 2, 10);
             this.color.setAlpha(50);
             fill(this.color);
             rect(0, 0, (width / 13) * 2, (height / 13) * 1);
@@ -244,12 +244,37 @@ class ColoredStreetsSpace extends Space {
         } else if(this.type == "vertical") {
 
             push();
-            textAlign(CENTER);
-            translate(this.x, this.y + 5);
-            fill(0);
+            translate(this.x, this.y);
+            this.color.setAlpha(255);
+            fill(this.color);
+            strokeWeight(2);
+            rect(0 - (width / 26), 0 - (height / 13), (width / 13) * 1, 10);
+            this.color.setAlpha(50);
+            fill(this.color);
+            rect(0 - (width / 26), 0 - (height / 13), (width / 13) * 1, (height / 13) * 2);
 
-            textSize(20);
-            print("AAAAAAHHHHHHHHHHHHHHHH");
+            fill(0);
+            textAlign(CENTER);
+            textSize(14);
+
+            let curretTextSize = 16;
+            let splitString = split(this.name, ' ');
+
+            for (let i = 0; i < splitString.length; i++) {
+                let curretTextSize = 16;
+                while(textWidth(splitString[i]) > (width / 13)) {
+
+                    --curretTextSize;
+                    textSize(curretTextSize);
+
+                }
+                text(splitString[i], 0 , -30 + i * 20);
+                
+            }
+
+            textSize(14);
+            //text(this.name, 0 , -30);
+            text("$" + this.price, 0 , 50);
 
             pop();
 
@@ -413,9 +438,11 @@ class TaxSpace extends Space {
             translate(this.x, this.y + 5);
             fill(0);
 
-            textSize(20);
-            //text("Community", 0 , -10);
-            //text("Chest", 0 , 10);
+            textSize(16);
+            text("Income", 0 , -30);
+            text("TAX", 0 , -10);
+            text("Pay", 0 , 10);
+            text("$200", 0 , 30);
 
             pop();
 
