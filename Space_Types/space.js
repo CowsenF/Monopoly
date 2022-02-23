@@ -109,9 +109,13 @@ class GoSpace extends Space {
 class RailroadSpace extends Space {
 
     //position, visualPositionX, visualPositionY, type, Railroad class
-    constructor(position, visualPositionX, visualPositionY, type) {
+    constructor(position, visualPositionX, visualPositionY, type, railroad) {
 
         super(position, visualPositionX, visualPositionY, type);
+
+        this.railroad = railroad;
+
+        this.name = this.railroad.getData("nameOfRailroad");
 
     }
 
@@ -132,8 +136,8 @@ class RailroadSpace extends Space {
 
             fill(0);
             textAlign(CENTER);
-            textSize(20);
-            text("Rail", 0 , -10);
+            textSize(12);
+            text(this.name, 0 , -10);
             text("$200", 0 , 10);
 
             pop();
@@ -142,12 +146,27 @@ class RailroadSpace extends Space {
 
             push();
             textAlign(CENTER);
-            translate(this.x, this.y + 5);
+            translate(this.x, this.y);
             fill(0);
 
             textSize(20);
-            text("Rail", 0 , -10);
-            text("$200", 0 , 10);
+
+            let curretTextSize = 16;
+            let splitString = split(this.name, ' ');
+
+            for (let i = 0; i < splitString.length; i++) {
+                let curretTextSize = 16;
+                while(textWidth(splitString[i]) > (width / 13)) {
+
+                    --curretTextSize;
+                    textSize(curretTextSize);
+
+                }
+                text(splitString[i], 0 , -30 + i * 20);
+                
+            }
+            textSize(14);
+            text("$200", 0 , 50);
 
             pop();
 
@@ -494,6 +513,8 @@ class JailSpace extends Space {
     constructor(position, visualPositionX, visualPositionY, type) {
 
         super(position, visualPositionX, visualPositionY, type);
+
+        
 
     }
 

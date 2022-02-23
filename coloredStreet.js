@@ -48,6 +48,12 @@ class ColoredStreet {
 
     }
 
+    switchOwner(/*player*/) {
+
+        // Set new player to owner
+
+    }
+
 
 
 

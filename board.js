@@ -3,12 +3,23 @@ class Board {
     constructor() {
 
         this.spaceList = [];
+        this.railroads = [];
         this.coloredStreets = [];
         this.coloredNumbersList = [];
         
+        this.makeRailroad();
         this.makeColoredNumbersList();
         this.makeColoredStreets();
         this.makeSpaces();
+
+    }
+
+    makeRailroad() {
+
+        this.railroads[0] = new Railroad("King Cross Station");
+        this.railroads[1] = new Railroad("Marylebone Station");
+        this.railroads[2] = new Railroad("Fenchurch St. Station");
+        this.railroads[3] = new Railroad("Liverpool St. Station");
 
     }
 
@@ -78,7 +89,7 @@ class Board {
         this.spaceList[2] = new CommunityChestSpace(2, (0 + width / 13), ((height * 10) / 13 - height / 26), "horizontal");
         this.spaceList[3] = new ColoredStreetsSpace(3, (0 + width / 13), ((height * 9) / 13 - height / 26), "horizontal", this.coloredStreets[1]);
         this.spaceList[4] = new TaxSpace(4, (0 + width / 13), ((height * 8) / 13 - height / 26), "horizontal");
-        this.spaceList[5] = new RailroadSpace(5, (0 + width / 13), ((height * 7) / 13 - height / 26), "horizontal");
+        this.spaceList[5] = new RailroadSpace(5, (0 + width / 13), ((height * 7) / 13 - height / 26), "horizontal", this.railroads[0]);
         this.spaceList[6] = new ColoredStreetsSpace(6, (0 + width / 13), ((height * 6) / 13 - height / 26), "horizontal", this.coloredStreets[2]);
         this.spaceList[7] = new ChanceSpace(7, (0 + width / 13), ((height * 5) / 13 - height / 26), "horizontal");
         this.spaceList[8] = new ColoredStreetsSpace(8, (0 + width / 13), ((height * 4) / 13 - height / 26), "horizontal", this.coloredStreets[3]);
@@ -88,7 +99,7 @@ class Board {
         this.spaceList[12] = new TaxSpace(12, ((width * 3) / 13 + width / 26), ((height * 1) / 13), "vertical");
         this.spaceList[13] = new ColoredStreetsSpace(13, ((width * 4) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[6]);
         this.spaceList[14] = new ColoredStreetsSpace(14, ((width * 5) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[7]);
-        this.spaceList[15] = new RailroadSpace(15, ((width * 6) / 13 + width / 26), ((height * 1) / 13), "vertical");
+        this.spaceList[15] = new RailroadSpace(15, ((width * 6) / 13 + width / 26), ((height * 1) / 13), "vertical", this.railroads[1]);
         this.spaceList[16] = new ColoredStreetsSpace(16, ((width * 7) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[8]);
         this.spaceList[17] = new CommunityChestSpace(17, ((width * 8) / 13 + width / 26), ((height * 1) / 13), "vertical");
         this.spaceList[18] = new ColoredStreetsSpace(18, ((width * 9) / 13 + width / 26), ((height * 1) / 13), "vertical", this.coloredStreets[9]);
@@ -98,7 +109,7 @@ class Board {
         this.spaceList[22] = new ChanceSpace(22, ((width * 12) / 13), ((height * 4) / 13 - height / 26), "horizontal");
         this.spaceList[23] = new ColoredStreetsSpace(23, ((width * 12) / 13), ((height * 5) / 13 - height / 26), "horizontal", this.coloredStreets[12]);
         this.spaceList[24] = new ColoredStreetsSpace(24, ((width * 12) / 13), ((height * 6) / 13 - height / 26), "horizontal", this.coloredStreets[13]);
-        this.spaceList[25] = new RailroadSpace(25, ((width * 12) / 13), ((height * 7) / 13 - height / 26), "horizontal");
+        this.spaceList[25] = new RailroadSpace(25, ((width * 12) / 13), ((height * 7) / 13 - height / 26), "horizontal", this.railroads[2]);
         this.spaceList[26] = new ColoredStreetsSpace(26, ((width * 12) / 13), ((height * 8) / 13 - height / 26), "horizontal", this.coloredStreets[14]);
         this.spaceList[27] = new ColoredStreetsSpace(27, ((width * 12) / 13), ((height * 9) / 13 - height / 26), "horizontal", this.coloredStreets[15]);
         this.spaceList[28] = new TaxSpace(28, ((width * 12) / 13), ((height * 10) / 13 - height / 26), "horizontal");
@@ -108,7 +119,7 @@ class Board {
         this.spaceList[32] = new ColoredStreetsSpace(32, ((width * 9) / 13 + width / 26), ((height * 12) / 13), "vertical", this.coloredStreets[18]);
         this.spaceList[33] = new CommunityChestSpace(33, ((width * 8) / 13 + width / 26), ((height * 12) / 13), "vertical");
         this.spaceList[34] = new ColoredStreetsSpace(34, ((width * 7) / 13 + width / 26), ((height * 12) / 13), "vertical", this.coloredStreets[19]);
-        this.spaceList[35] = new RailroadSpace(35, ((width * 6) / 13 + width / 26), ((height * 12) / 13), "vertical");
+        this.spaceList[35] = new RailroadSpace(35, ((width * 6) / 13 + width / 26), ((height * 12) / 13), "vertical", this.railroads[3]);
         this.spaceList[36] = new ChanceSpace(36, ((width * 5) / 13 + width / 26), ((height * 12) / 13), "vertical");
         this.spaceList[37] = new ColoredStreetsSpace(37, ((width * 4) / 13 + width / 26), ((height * 12) / 13), "vertical", this.coloredStreets[20]);
         this.spaceList[38] = new TaxSpace(38, ((width * 3) / 13 + width / 26), ((height * 12) / 13), "vertical");
