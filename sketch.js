@@ -26,7 +26,9 @@ function setup() {
 function draw() {  
 
   background(191, 219, 174);
-  
+
+
+  // dice box and roll text
   push()
   fill(191, 219, 174);
   rect(width/2 - 60, height/2 - 30, 120, 60);
@@ -68,10 +70,9 @@ function update() {
 }
 
 function mousePressed(){
+  // if the mouse is clicked inside the dice box, run the rollDice function from player.js
   if(mouseX > width/2 - 60 && mouseX < width/2 + 60 && mouseY > height/2 -30 && mouseY < height/2 + 30){
     player.rollDice();
-    print(player.playerRoll);
-    print(player.positionID);
   }
 
 }

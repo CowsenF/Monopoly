@@ -7,7 +7,7 @@ class Player{
         // currentCredit beskriver hvor mange penge spilleren har
         this.currentCredit = 15000;
         // playerStage beskriver spillerens stadie (fri, fængsel, død)
-        this.playerStage = 0;
+        this.playerState = 0;
         this.diceRoll1 = 0;
         this.diceRoll2 = 0;
         this.playerRoll = 0;
@@ -15,26 +15,35 @@ class Player{
     }
 
     
-
+// function for dice roll
     rollDice(){
+        // two dices that randomly roles 1,2,3,4,5 or 6.
         this.diceRoll1 = floor(random(1,7));
         this.diceRoll2 = floor(random(1,7));
 
+        // player total roll made of dice 1 and dice 2
         this.playerRoll = this.diceRoll1 + this.diceRoll2;
+        // position id changes according to total roll
         this.positionID += this.playerRoll;
-        if(this.positionID > 12){
-            this.positionID -= 13;
+
+        // if player roll results in player moving beyond last tile, reset position to tile 1 (id 0)
+        // and add remaining dice roll
+        if(this.positionID > 39){
+            this.positionID -= 40;
+
         }
         
     }
 
     draw(){
 
+        // The drawn ellipse represents the player position on the map
         fill(255);
         ellipse(board.spaceList[this.positionID].x, board.spaceList[this.positionID].y, 25);
 
+        // the drawn images depends of the rolls of each dice, and is shown on the board to view roll
         imageMode(CENTER);
-
+        // First die
         if(this.diceRoll1 == 1){
             image(dice1, width/2 - 30, height/2, 50, 50);
         }
@@ -53,7 +62,7 @@ class Player{
         else if(this.diceRoll1 == 6){
             image(dice6, width/2 - 30, height/2, 50, 50);
         }
-
+        // Second die
         if(this.diceRoll2 == 1){
             image(dice1, width/2 + 30, height/2, 50, 50);
         }
