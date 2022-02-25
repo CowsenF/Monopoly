@@ -12,13 +12,13 @@ class Space {
 
     landedOn() {
 
-
+        
 
     }
 
     passed() {
 
-
+    
 
     }
 

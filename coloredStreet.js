@@ -7,12 +7,12 @@ class ColoredStreet {
 
         this.price = numbersList[0];
         this.pricePerHouse = numbersList[1];
-        this.Rent = numbersList[2];
-        this.Rent1House = numbersList[3];
-        this.Rent2House = numbersList[4];
-        this.Rent3House = numbersList[5];
-        this.Rent4House = numbersList[6];
-        this.RentHotel = numbersList[7];
+        this.rent = numbersList[2];
+        this.rent1House = numbersList[3];
+        this.rent2House = numbersList[4];
+        this.rent3House = numbersList[5];
+        this.rent4House = numbersList[6];
+        this.rentHotel = numbersList[7];
         this.mortagage = numbersList[0] / 2;
 
         this.owner = "bank";
@@ -39,6 +39,36 @@ class ColoredStreet {
                 
                 return this.pricePerHouse;
 
+                //fffffffffffffffffffffffffffffff
+
+            case "rent":
+            
+                return this.rent;
+
+            case "rent1House":
+                
+                return this.rent1House;
+
+            case "rent2House":
+            
+                return this.rent2House;
+                
+            case "rent3House":
+                
+                return this.rent3House;
+
+            case "rent4House":
+            
+                return this.rent4House;
+
+            case "rentHotel":
+            
+                return this.rentHotel;
+                
+            case "mortagage":
+                
+                return this.mortagage;
+
 
         
             default:
@@ -51,6 +81,12 @@ class ColoredStreet {
     switchOwner(/*player*/) {
 
         // Set new player to owner
+
+    }
+
+    setBuildings() {
+
+        
 
     }
 
