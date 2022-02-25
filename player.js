@@ -44,6 +44,8 @@ class Player{
         // the drawn images depends of the rolls of each dice, and is shown on the board to view roll
         imageMode(CENTER);
         // First die
+
+        // ændring
         if(this.diceRoll1 == 1){
             image(dice1, width/2 - 30, height/2, 50, 50);
         }
