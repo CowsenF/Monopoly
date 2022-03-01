@@ -12,6 +12,8 @@ class Player{
         this.diceRoll2 = 0;
         this.playerRoll = 0;
 
+        this.rollDice = this.rollDice.bind(this);
+
     }
 
     
