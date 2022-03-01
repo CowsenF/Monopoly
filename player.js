@@ -28,6 +28,8 @@ class Player{
             this.color ='rgb(255,255,0)';
         }
 
+        this.rollDice = this.rollDice.bind(this);
+
     }
 
     
