@@ -3,7 +3,7 @@ let player = [];
 //gameState 0 er til at finde ud af hvor mange spilere der er
 //gameState 1 er til at spille spillet
 //gameState 2 er til at vise hvem der har vundet og sprøge om der skal spilles et nyt spil
-let gameState = 1;
+let gameState = 0;
 //boardState 0 betyder at der er ikke nogle menuer open.
 //boardState 1 betyder at der er en bestem menu open.
 let boardState = 0;
@@ -33,14 +33,6 @@ function setup() {
   
   setUpBoard();
 
-  buttonList.push(new Button(width/2, height/2, 60, 30, player.rollDice, "roleDice"));
-
-}
-
-function draw() {  
-
-  background(191, 219, 174);
-
   // indsæet spillere i player[] udfra playerQTY der bestemmer antallet af spillere.
   // denne funktion køre kun en gang på grund af playersSet
   if(playersSet == false){
@@ -49,6 +41,16 @@ function draw() {
     }
     playersSet = true;
   }
+
+  buttonList.push(new Button(width/2, height/2, 60, 30, player, "rollDice"));
+
+}
+
+function draw() {  
+
+  background(191, 219, 174);
+
+  
   
 
   // dice box and roll text
@@ -60,8 +62,6 @@ function draw() {
   textAlign(CENTER, CENTER);
   text('Click to roll dices', width/2, height/2 - 40);
   pop();
-  diceRoll1 = player[playerTurn].diceRoll1;
-  diceRoll2 = player[playerTurn].diceRoll2;
 
   update();
 
@@ -75,6 +75,8 @@ function draw() {
 function setUpBoard() {
 
   board = new Board();
+
+  gameState = 1
 
   // reset/setup bank
 
@@ -112,7 +114,7 @@ function setButtons() {
 
     for (let i = 0; i < buttonList.length; i++) {
 
-      if(buttonList[i].name == "roleDice") {
+      if(buttonList[i].name == "rollDice") {
 
         buttonList[i].canBePressed = true;
         continue;
@@ -134,6 +136,9 @@ function mousePressed(){
     buttonList[i].checkForPress();
    }
   //VI SKAL LIGE FINDE UD AF HVOR DET HER SKAL STÅ:
+  
+  diceRoll1 = player[playerTurn].diceRoll1;
+  diceRoll2 = player[playerTurn].diceRoll2;
   if(diceRoll1 != diceRoll2){
       if(playerTurn < playerQTY - 1){
         playerTurn += 1;

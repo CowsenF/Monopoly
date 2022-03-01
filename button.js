@@ -17,11 +17,20 @@ class Button {
     checkForPress() {
 
         if(this.canBePressed == false) {
+
             return;
         }
+        
+
         if(mouseX > this.x - this.xSize && mouseX < this.x + this.xSize && mouseY > this.y - this.ySize && mouseY < this.y + this.ySize) {
             
-            this.callTo();
+            if(this.name == "rollDice") {
+
+                
+                this.callTo[playerTurn].rollDice();
+
+            }
+            
         }
 
     }
