@@ -3,7 +3,7 @@ class Player{
         // positionID beskriver hvilket felt spilleren er/lander på. Ved at
         // hente feltets information kan spilleren placeres på feltets placering.
         // spillerens første placering er altid GO
-        this.positionID = 7;
+        this.positionID = 0;
         // currentCredit beskriver hvor mange penge spilleren har
         this.currentCredit = 15000;
         // playerStage beskriver spillerens stadie (fri, fængsel, død)
@@ -29,9 +29,31 @@ class Player{
         // if player roll results in player moving beyond last tile, reset position to tile 1 (id 0)
         // and add remaining dice roll
         if(this.positionID > 39){
+
+            for(let i = this.positionID - this.playerRoll + 1; i < 39; i++) {
+
+                board.spaceList[i].passed(this);
+
+            }
             this.positionID -= 40;
+            for(let i = 0; i < this.positionID; i++) {
+
+                board.spaceList[i].passed(this);
+
+            }
+
+            
+
+        } else {
+            // we don't want the place were player stared and ended.
+            for(let i = this.positionID - this.playerRoll + 1; i < this.positionID; i++) 
+            {
+                board.spaceList[i].passed(this);
+            }
 
         }
+
+        board.spaceList[this.positionID].landedOn(this);
         
     }
 

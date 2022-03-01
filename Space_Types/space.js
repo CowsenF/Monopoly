@@ -10,15 +10,15 @@ class Space {
 
     }
 
-    landedOn() {
+    landedOn(player) {
 
-        
+
 
     }
 
-    passed() {
+    passed(player) {
 
-    
+
 
     }
 
@@ -81,9 +81,15 @@ class GoSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
-        //add 200 $ to this player
+        player.currentCredit += 200;
+
+    }
+
+    passed(player) {
+
+        player.currentCredit += 200;
 
     }
 
@@ -433,9 +439,9 @@ class TaxSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
-        //this player pay $200
+        player.currentCredit -= 200;
 
     }
 
@@ -483,6 +489,15 @@ class GoToJailSpace extends Space {
     constructor(position, visualPositionX, visualPositionY, type) {
 
         super(position, visualPositionX, visualPositionY, type);
+
+    }
+
+    landedOn(player) {
+
+        player.positionID = 10;
+        player.playerState = 1;
+
+        print("this player is in jail");
 
     }
 
