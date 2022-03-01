@@ -1,5 +1,5 @@
 let board;
-let player;
+let player = [];
 //gameState 0 er til at finde ud af hvor mange spilere der er
 //gameState 1 er til at spille spillet
 //gameState 2 er til at vise hvem der har vundet og sprøge om der skal spilles et nyt spil
@@ -9,6 +9,14 @@ let gameState = 1;
 let boardState = 0;
 
 let buttonList = [];
+
+// antal spillere
+let playerQTY = 4;
+let playersSet = false;
+let playerTurn = 0;
+
+let diceRoll1 = 0;
+let diceRoll2 = 0;
 
 function preload(){
   dice1 = loadImage('images/dice-six-faces1.png');
@@ -25,15 +33,23 @@ function setup() {
   
   setUpBoard();
 
-  player = new Player();
-
   buttonList.push(new Button(width/2, height/2, 60, 30, player.rollDice, "roleDice"));
+
 }
 
 function draw() {  
 
   background(191, 219, 174);
 
+  // indsæet spillere i player[] udfra playerQTY der bestemmer antallet af spillere.
+  // denne funktion køre kun en gang på grund af playersSet
+  if(playersSet == false){
+    for (let i = 0; i < playerQTY; i++) {
+      player.push(new Player(i));
+    }
+    playersSet = true;
+  }
+  
 
   // dice box and roll text
   push();
@@ -44,11 +60,12 @@ function draw() {
   textAlign(CENTER, CENTER);
   text('Click to roll dices', width/2, height/2 - 40);
   pop();
+  diceRoll1 = player[playerTurn].diceRoll1;
+  diceRoll2 = player[playerTurn].diceRoll2;
 
   update();
 
   
-
   
 }
 
@@ -69,7 +86,10 @@ function update() {
 
   board.update();
 
-  player.update();
+  // opdatere alle spilleres informationer
+  for (let i = 0; i < playerQTY; i++) {
+    player[i].update();
+  }
 
   setButtons();
   
@@ -112,7 +132,14 @@ function mousePressed(){
   // if the mouse is clicked inside the dice box, run the rollDice function from player.js
   for (let i = 0; i < buttonList.length; i++) {
     buttonList[i].checkForPress();
-    
-  }
-
+   }
+  //VI SKAL LIGE FINDE UD AF HVOR DET HER SKAL STÅ:
+  if(diceRoll1 != diceRoll2){
+      if(playerTurn < playerQTY - 1){
+        playerTurn += 1;
+      }
+      else{
+        playerTurn = 0;
+      }
+    }
 }
