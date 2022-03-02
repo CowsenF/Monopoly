@@ -131,20 +131,12 @@ function setButtons() {
 }
 
 function mousePressed(){
-  // if the mouse is clicked inside the dice box, run the rollDice function from player.js
+  // when mouse is clicked, check if any button from the button class fufill the condition to activate
   for (let i = 0; i < buttonList.length; i++) {
     buttonList[i].checkForPress();
    }
   //VI SKAL LIGE FINDE UD AF HVOR DET HER SKAL STÅ:
+  // jeg smed det ind i rollDice() i player.js :)
   
-  diceRoll1 = player[playerTurn].diceRoll1;
-  diceRoll2 = player[playerTurn].diceRoll2;
-  if(diceRoll1 != diceRoll2){
-      if(playerTurn < playerQTY - 1){
-        playerTurn += 1;
-      }
-      else{
-        playerTurn = 0;
-      }
-    }
+  
 }

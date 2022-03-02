@@ -71,10 +71,23 @@ class Player{
 
         }
 
+        // diceRoll 1 og 2 bruges til at tegne den rigtige terning ud fra spillerens diceRoll
+        diceRoll1 = player[playerTurn].diceRoll1;
+        diceRoll2 = player[playerTurn].diceRoll2;
+
+        
+        if(diceRoll1 != diceRoll2){
+            if(playerTurn < playerQTY - 1){
+                playerTurn += 1;
+            }  
+            else{
+            playerTurn = 0;
+            }
+        }
+
 
         board.spaceList[this.positionID].landedOn(this);
 
-        
     }
 
     drawDice(){
