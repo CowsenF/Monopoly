@@ -99,6 +99,7 @@ function draw() {
     fill(0);
     textAlign(CENTER, CENTER);
     text('Player ' + (player[i].playerNR + 1), boardSizeX / 6, 40);
+    text('Money: ' + (player[i].currentCredit), boardSizeX / 6, 60);
     pop();
 
     

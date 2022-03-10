@@ -5,7 +5,7 @@ class Player{
         // spillerens første placering er altid GO
         this.positionID = 0;
         // currentCredit beskriver hvor mange penge spilleren har
-        this.currentCredit = 15000;
+        this.currentCredit = 2000;
         // playerStage beskriver spillerens stadie (fri, fængsel, død)
         this.playerState = 0;
         this.diceRoll1 = 0;
