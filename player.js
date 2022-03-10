@@ -83,49 +83,51 @@ class Player{
         // First dice
         
             if(diceRoll1 == 1){
-                image(dice1, width/2 - 30, height/2, 50, 50);
+                image(dice1, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll1 == 2){
-                image(dice2, width/2 - 30, height/2, 50, 50);
+                image(dice2, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll1 == 3){
-                image(dice3, width/2 - 30, height/2, 50, 50);
+                image(dice3, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll1 == 4){
-                image(dice4, width/2 - 30, height/2, 50, 50);
+                image(dice4, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll1 == 5){
-                image(dice5, width/2 - 30, height/2, 50, 50);
+                image(dice5, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll1 == 6){
-                image(dice6, width/2 - 30, height/2, 50, 50);
+                image(dice6, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
             }
             // Second dice
             if(diceRoll2 == 1){
-                image(dice1, width/2 + 30, height/2, 50, 50);
+                image(dice1, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll2 == 2){
-                image(dice2, width/2 + 30, height/2, 50, 50);
+                image(dice2, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll2 == 3){
-                image(dice3, width/2 + 30, height/2, 50, 50);
+                image(dice3, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll2 == 4){
-                image(dice4, width/2 + 30, height/2, 50, 50);
+                image(dice4, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll2 == 5){
-                image(dice5, width/2 + 30, height/2, 50, 50);
+                image(dice5, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
             else if(diceRoll2 == 6){
-                image(dice6, width/2 + 30, height/2, 50, 50);
+                image(dice6, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
             }
     }
 
     draw(){
 
         // The drawn ellipse represents the player position on the map
+        push();
         fill(this.color);
         ellipse(board.spaceList[this.positionID].x, board.spaceList[this.positionID].y, 25);
+        pop();
 
         
     }
