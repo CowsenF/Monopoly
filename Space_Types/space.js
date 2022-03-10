@@ -496,6 +496,7 @@ class GoToJailSpace extends Space {
 
         player.positionID = 10;
         player.playerState = 1;
+        player.jailTurn = 0;
 
         print("this player is in jail");
 
