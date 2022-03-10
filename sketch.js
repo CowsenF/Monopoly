@@ -10,6 +10,9 @@ let boardState = 0;
 
 let buttonList = [];
 
+let boardSizeX = 800;
+let boardSizeY = 800;
+
 // antal spillere
 let playerQTY = 4;
 let playersSet = false;
@@ -29,7 +32,7 @@ function preload(){
 
 function setup() {
 
-  createCanvas(800, 800);
+  createCanvas(1600, 800);
   
   setUpBoard();
 
@@ -42,7 +45,7 @@ function setup() {
     playersSet = true;
   }
 
-  buttonList.push(new Button(width/2, height/2, 60, 30, player, "rollDice"));
+  buttonList.push(new Button(boardSizeX/2, boardSizeY/2, 60, 30, player, "rollDice"));
 
 }
 
@@ -56,12 +59,55 @@ function draw() {
   // dice box and roll text
   push();
   fill(191, 219, 174);
-  rect(width/2 - 60, height/2 - 30, 120, 60);
+  rect(boardSizeX/2 - 60, boardSizeY/2 - 30, 120, 60);
   textSize(15);
   fill(0);
   textAlign(CENTER, CENTER);
-  text('Click to roll dices', width/2, height/2 - 40);
+  text('Click to roll dices', boardSizeX/2, boardSizeY/2 - 40);
   pop();
+
+
+
+  for (let i = 0; i < playerQTY; i++) {
+
+    push();
+    fill(191, 219, 174);
+    strokeWeight(2);
+    
+    if(i == 0) {
+      
+      translate(boardSizeX, 0);
+      
+
+    } else if (i == 1) {
+
+      translate(boardSizeX + boardSizeX - boardSizeX / 3, 0);
+      
+    } else if (i == 2)  {
+
+      translate(boardSizeX + boardSizeX - boardSizeX / 3, boardSizeY / 13 * 9);
+      
+    } else if (i == 3)  {
+
+      translate(boardSizeX, boardSizeY / 13 * 9);
+      
+    }
+    rect(0, 0, boardSizeX / 3, boardSizeY / 13 * 4);
+    
+    
+    textSize(15);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text('Player ' + (player[i].playerNR + 1), boardSizeX / 6, 40);
+    text('Money: ' + (player[i].currentCredit), boardSizeX / 6, 60);
+    pop();
+
+    
+
+  }
+
+  
+
 
   update();
 

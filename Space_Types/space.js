@@ -38,7 +38,7 @@ class Space {
             rectMode(CENTER);
             fill(191, 219, 174);
             strokeWeight(2);
-            rect(this.x, this.y, (width / 13) * 2, (height / 13) * 2);
+            rect(this.x, this.y, (boardSizeX / 13) * 2, (boardSizeY / 13) * 2);
             pop();
 
         } else if(this.type == "horizontal") {
@@ -47,7 +47,7 @@ class Space {
             rectMode(CENTER);
             fill(191, 219, 174);
             strokeWeight(2);
-            rect(this.x, this.y, (width / 13) * 2, (height / 13) * 1);
+            rect(this.x, this.y, (boardSizeX / 13) * 2, (boardSizeY / 13) * 1);
             pop();
 
         } else if(this.type == "vertical") {
@@ -56,7 +56,7 @@ class Space {
             rectMode(CENTER);
             fill(191, 219, 174);
             strokeWeight(2);
-            rect(this.x, this.y, (width / 13) * 1, (height / 13) * 2);
+            rect(this.x, this.y, (boardSizeX / 13) * 1, (boardSizeY / 13) * 2);
             pop();
 
         }
@@ -162,7 +162,7 @@ class RailroadSpace extends Space {
 
             for (let i = 0; i < splitString.length; i++) {
                 let curretTextSize = 16;
-                while(textWidth(splitString[i]) > (width / 13)) {
+                while(textWidth(splitString[i]) > (boardSizeX / 13)) {
 
                     --curretTextSize;
                     textSize(curretTextSize);
@@ -254,10 +254,10 @@ class ColoredStreetsSpace extends Space {
             this.color.setAlpha(255);
             fill(this.color);
             strokeWeight(2);
-            rect(0, -25, (width / 13) * 2, 10);
+            rect(0, -25, (boardSizeX / 13) * 2, 10);
             this.color.setAlpha(50);
             fill(this.color);
-            rect(0, 0, (width / 13) * 2, (height / 13) * 1);
+            rect(0, 0, (boardSizeX / 13) * 2, (boardSizeY / 13) * 1);
 
             fill(0);
             textAlign(CENTER);
@@ -274,10 +274,10 @@ class ColoredStreetsSpace extends Space {
             this.color.setAlpha(255);
             fill(this.color);
             strokeWeight(2);
-            rect(0 - (width / 26), 0 - (height / 13), (width / 13) * 1, 10);
+            rect(0 - (boardSizeX / 26), 0 - (boardSizeY / 13), (boardSizeX / 13) * 1, 10);
             this.color.setAlpha(50);
             fill(this.color);
-            rect(0 - (width / 26), 0 - (height / 13), (width / 13) * 1, (height / 13) * 2);
+            rect(0 - (boardSizeX / 26), 0 - (boardSizeY / 13), (boardSizeX / 13) * 1, (boardSizeY / 13) * 2);
 
             fill(0);
             textAlign(CENTER);
@@ -288,7 +288,7 @@ class ColoredStreetsSpace extends Space {
 
             for (let i = 0; i < splitString.length; i++) {
                 let curretTextSize = 16;
-                while(textWidth(splitString[i]) > (width / 13)) {
+                while(textWidth(splitString[i]) > (boardSizeX / 13)) {
 
                     --curretTextSize;
                     textSize(curretTextSize);
