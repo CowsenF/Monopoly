@@ -12,6 +12,8 @@ class Player{
         this.diceRoll2 = 0;
         this.playerRoll = 0;
         this.playerNR = playerNR;
+        this.jailTurn = 0;
+        this.doubleRoll = 0;
 
         if(playerNR == 0){
             this.color = 'rgb(255,0,0)';
@@ -42,6 +44,9 @@ class Player{
         // player total roll made of dice 1 and dice 2
         this.playerRoll = this.diceRoll1 + this.diceRoll2;
         // position id changes according to total roll
+
+        // If playerState is zero (meaning free) the player may move
+        if(this.playerState == 0){
         this.positionID += this.playerRoll;
 
         // if player roll results in player moving beyond last tile, reset position to tile 1 (id 0)
@@ -70,6 +75,21 @@ class Player{
             }
 
         }
+    }
+    // If playerState is 1, player is in jail
+    else if(this.playerState == 1){
+        this.jailTurn += 1;
+        
+        // If dices are the same, the player is let go earlier
+        if(this.diceRoll1 == this.diceRoll2){
+            this.jailTurn = 3;
+        }
+
+        if(this.jailTurn == 3){
+            this.playerState = 0;
+        }
+
+    }
 
         // diceRoll 1 og 2 bruges til at tegne den rigtige terning ud fra spillerens diceRoll
         diceRoll1 = player[playerTurn].diceRoll1;
@@ -84,10 +104,25 @@ class Player{
             playerTurn = 0;
             }
         }
+        else{
+            if(this.doubleRoll == 3){
+                this.goToJail();
+                this.doubleRoll = 0;
+            }
+            this.doubleRoll += 1;
+            print(this.doubleRoll);
+            
+        }
 
 
         board.spaceList[this.positionID].landedOn(this);
 
+    }
+
+    goToJail(){
+        this.positionID = 10;
+        this.playerState = 1;
+        this.jailTurn = 0;
     }
 
     drawDice(){

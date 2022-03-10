@@ -25,14 +25,15 @@ class Button {
         if(mouseX > this.x - this.xSize && mouseX < this.x + this.xSize && mouseY > this.y - this.ySize && mouseY < this.y + this.ySize) {
             
             if(this.name == "rollDice") {
+                if(gameState == 1){
                 
                 this.callTo[playerTurn].rollDice();
-
-                
-
+                }
             }
             
         }
+
+
 
     }
 

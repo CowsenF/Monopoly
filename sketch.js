@@ -31,7 +31,7 @@ function setup() {
 
   createCanvas(800, 800);
   
-  setUpBoard();
+  
 
   // indsæet spillere i player[] udfra playerQTY der bestemmer antallet af spillere.
   // denne funktion køre kun en gang på grund af playersSet
@@ -46,14 +46,32 @@ function setup() {
 
 }
 
-function draw() {  
+function draw() {
 
-  background(191, 219, 174);
+  background(191, 219, 174);  
 
-  
+  if(gameState == 0){
+    push();
+    textAlign(CENTER, CENTER);
+    fill(0);
+    textSize(30);
+    text("Vælg antal spillere", width/2, 200);
+    fill(255);
+    textSize(20);
+    rect(width/2 -100, 250, 200, 40);
+    rect(width/2 -100, 305, 200, 40);
+    rect(width/2 -100, 360, 200, 40);
+
+    fill(0);
+    text("2 spillere", width/2, 270);
+    text("3 spillere", width/2, 325);
+    text("4 spillere", width/2, 380);
+    pop();
+  }
   
 
   // dice box and roll text
+  if(gameState == 1){
   push();
   fill(191, 219, 174);
   rect(width/2 - 60, height/2 - 30, 120, 60);
@@ -64,9 +82,7 @@ function draw() {
   pop();
 
   update();
-
-  
-  
+  }
 }
 
 //Kan blive kladt for at lave et nyt spil.
@@ -76,7 +92,7 @@ function setUpBoard() {
 
   board = new Board();
 
-  gameState = 1
+  gameState = 1;
 
   // reset/setup bank
 
@@ -138,5 +154,21 @@ function mousePressed(){
   //VI SKAL LIGE FINDE UD AF HVOR DET HER SKAL STÅ:
   // jeg smed det ind i rollDice() i player.js :)
   
-  
+  if(gameState == 0){
+    if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 250 && mouseY < 290){
+        playerQTY = 2;
+        setUpBoard();
+        print('2 spillere');
+    }
+    else if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 305 && mouseY < 345){
+      playerQTY = 3;
+      setUpBoard();
+      print('2 spillere');
+    }
+    else if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 360 && mouseY < 400){
+    playerQTY = 4;
+    setUpBoard();
+    print('2 spillere');
+    }
+  }
 }
