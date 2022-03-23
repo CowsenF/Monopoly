@@ -12,7 +12,10 @@ class Player{
         this.diceRoll2 = 0;
         this.playerRoll = 0;
         this.playerNR = playerNR;
+        // How many turns the player has spent in jail
         this.jailTurn = 0;
+        // The amount of turns in a row the player has made double rolls.
+        // THep layer goes to jail if hitting 3 rolls in a row.
         this.doubleRoll = 0;
 
         if(playerNR == 0){
@@ -97,12 +100,7 @@ class Player{
 
         
         if(diceRoll1 != diceRoll2){
-            if(playerTurn < playerQTY - 1){
-                playerTurn += 1;
-            }  
-            else{
-            playerTurn = 0;
-            }
+            this.endTurn();
         }
         else{
             if(this.doubleRoll == 3){
@@ -110,19 +108,16 @@ class Player{
                 this.doubleRoll = 0;
             }
             this.doubleRoll += 1;
-            print(this.doubleRoll);
-            
         }
 
-
         board.spaceList[this.positionID].landedOn(this);
-
     }
 
     goToJail(){
         this.positionID = 10;
         this.playerState = 1;
         this.jailTurn = 0;
+        this.endTurn();
     }
 
     drawDice(){
@@ -169,6 +164,15 @@ class Player{
             }
     }
 
+    endTurn(){
+        if(playerTurn < playerQTY - 1){
+            playerTurn += 1;
+        }  
+        else{
+        playerTurn = 0;
+        }
+    }
+
     draw(){
 
         // The drawn ellipse represents the player position on the map
@@ -176,8 +180,6 @@ class Player{
         fill(this.color);
         ellipse(board.spaceList[this.positionID].x, board.spaceList[this.positionID].y, 25);
         pop();
-
-        
     }
 
     update(){

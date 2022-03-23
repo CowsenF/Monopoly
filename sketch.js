@@ -9,6 +9,8 @@ let gameState = 0;
 let boardState = 0;
 
 let buttonList = [];
+let chanceDeck;
+let communityDeck;
 
 let boardSizeX = 800;
 let boardSizeY = 800;
@@ -47,6 +49,8 @@ function setup() {
 
   buttonList.push(new Button(boardSizeX/2, boardSizeY/2, 60, 30, player, "rollDice"));
 
+  chanceDeck = new ChanceCard();
+
 }
 
 function draw() {
@@ -58,7 +62,7 @@ function draw() {
     textAlign(CENTER, CENTER);
     fill(0);
     textSize(30);
-    text("Vælg antal spillere", width/2, 200);
+    text("Choose number of players", width/2, 200);
     fill(255);
     textSize(20);
     rect(width/2 -100, 250, 200, 40);
@@ -66,9 +70,9 @@ function draw() {
     rect(width/2 -100, 360, 200, 40);
 
     fill(0);
-    text("2 spillere", width/2, 270);
-    text("3 spillere", width/2, 325);
-    text("4 spillere", width/2, 380);
+    text("2 players", width/2, 270);
+    text("3 players", width/2, 325);
+    text("4 players", width/2, 380);
     pop();
   }
   
@@ -81,7 +85,33 @@ function draw() {
   textSize(15);
   fill(0);
   textAlign(CENTER, CENTER);
+
   text('Click to roll dices', boardSizeX/2, boardSizeY/2 - 40);
+
+
+  // Show whose turn it is
+  if(playerTurn == 0){
+    fill(255,0,0);
+    stroke(255);
+  }
+  else if(playerTurn ==1 ){
+    fill(0, 255, 0);
+    stroke(0);
+  }
+
+  else if(playerTurn == 2){
+    fill(0, 0, 255);
+    stroke(255);
+  }
+
+  else if(playerTurn == 3){
+    fill(255, 255, 0);
+    stroke(0);
+  }
+  strokeWeight(3);
+
+  textSize(25);
+  text('player ' + (playerTurn+1) + ' turn', boardSizeX/2, boardSizeY/2 + 75);
   pop();
 
 
@@ -124,10 +154,9 @@ function draw() {
 
   }
 
-  
-
-
   update();
+  // console.log(board.spaceList[5]);
+  
   }
 }
 
