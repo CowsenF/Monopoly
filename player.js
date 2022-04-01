@@ -46,59 +46,56 @@ class Player{
 
         // player total roll made of dice 1 and dice 2
         this.playerRoll = this.diceRoll1 + this.diceRoll2;
+        // this.playerRoll = 2;
         // position id changes according to total roll
 
         // If playerState is zero (meaning free) the player may move
-        if(this.playerState == 0){
+    if(this.playerState == 0){
+        
         this.positionID += this.playerRoll;
+        // let oldPositionID = this.positionID - this.playerRoll;
 
-        // if player roll results in player moving beyond last tile, reset position to tile 1 (id 0)
+        // if player roll results in player moving beyond last space, reset position to space 1 (id 0)
         // and add remaining dice roll
         if(this.positionID > 39){
 
             for(let i = this.positionID - this.playerRoll + 1; i < 39; i++) {
-
                 board.spaceList[i].passed(this);
-
             }
+
             this.positionID -= 40;
             for(let i = 0; i < this.positionID; i++) {
-
                 board.spaceList[i].passed(this);
-
             }
-
             
-
+            
         } else {
             // we don't want the place were player stared and ended.
             for(let i = this.positionID - this.playerRoll + 1; i < this.positionID; i++) 
             {
                 board.spaceList[i].passed(this);
             }
-
+        }            
+            
         }
-    }
-    // If playerState is 1, player is in jail
-    else if(this.playerState == 1){
-        this.jailTurn += 1;
-        
-        // If dices are the same, the player is let go earlier
-        if(this.diceRoll1 == this.diceRoll2){
-            this.jailTurn = 3;
-        }
+         // If playerState is 1, player is in jail
+        if(this.playerState == 1){
+            this.jailTurn += 1;
+            
+            // If dices are the same, the player is let go earlier
+            if(this.diceRoll1 == this.diceRoll2){
+                this.jailTurn = 3;
+            }
 
-        if(this.jailTurn == 3){
-            this.playerState = 0;
+            if(this.jailTurn == 3){
+                this.playerState = 0;
+            }
         }
-
-    }
 
         // diceRoll 1 og 2 bruges til at tegne den rigtige terning ud fra spillerens diceRoll
         diceRoll1 = player[playerTurn].diceRoll1;
         diceRoll2 = player[playerTurn].diceRoll2;
 
-        
         if(diceRoll1 != diceRoll2){
             this.endTurn();
         }
@@ -109,9 +106,42 @@ class Player{
             }
             this.doubleRoll += 1;
         }
+        
 
         board.spaceList[this.positionID].landedOn(this);
+        //this.movePlayer(this.playerRoll, this.positionID, true, true)
     }
+
+    // movePlayer(newToOldPositionDifference, newPositionID, shallPass, shallLand){
+        
+    //     if(newPositionID > 39){
+
+    //         for(let i = newPositionID - newToOldPositionDifference + 1; i < 39; i++) {
+
+    //             board.spaceList[i].passed(this);
+
+    //         }
+    //         this.positionID -= 40;
+    //         for(let i = 0; i < newPositionID; i++) {
+
+    //             board.spaceList[i].passed(this);
+
+    //         }
+
+            
+
+    //     } else {
+    //         // we don't want the place were player stared and ended.
+    //         for(let i = newPositionID - newToOldPositionDifference + 1; i < this.positionID; i++) 
+    //         {
+    //             board.spaceList[i].passed(this);
+    //         }
+
+    //     }
+    
+
+    //     board.spaceList[newPositionID].landedOn(this);
+    // }
 
     goToJail(){
         this.positionID = 10;

@@ -335,7 +335,7 @@ class ChanceSpace extends Space {
 
     landedOn(player) {
 
-        chanceDeck.drawChanceCard(player);
+        chanceDeck.drawChanceCard(player, board);
 
     }
 
@@ -388,10 +388,10 @@ class CommunityChestSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
         //player pick a card
-        chanceDeck.drawCommunityCard(player);
+        chanceDeck.drawCommunityCard(player, board);
 
     }
 
