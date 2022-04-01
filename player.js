@@ -17,20 +17,25 @@ class Player{
         // The amount of turns in a row the player has made double rolls.
         // THep layer goes to jail if hitting 3 rolls in a row.
         this.doubleRoll = 0;
+        // 0 = brown, 1 = skyBlue, 2 = darkOrchid, 3 = orange, 4 = red, 5 = yellow, 6 = green, 7 = blue
+        this.streetGroupOwn = [false, false, false, false, false, false, false, false];
+
+
+        this.name = `${"player "}${playerNR + 1}`;
 
         if(playerNR == 0){
-            this.color = 'rgb(255,0,0)';
+            this.color = color(255,0,0);
         }
         else if(playerNR == 1){
-            this.color = 'rgb(0,255,0)';
+            this.color = color(0,255,0);
         }
 
         else if (playerNR == 2){
-            this.color = 'rgb(0,0,255)';
+            this.color = color(0,0,255);
         }
 
         else if (playerNR == 3){
-            this.color ='rgb(255,255,0)';
+            this.color = color(255,255,0);
         }
 
         this.rollDice = this.rollDice.bind(this);
@@ -150,49 +155,7 @@ class Player{
         this.endTurn();
     }
 
-    drawDice(){
-        // the drawn images depends of the rolls of each dice, and is shown on the board to view player roll
-        imageMode(CENTER);
-        // First dice
-        
-            if(diceRoll1 == 1){
-                image(dice1, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll1 == 2){
-                image(dice2, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll1 == 3){
-                image(dice3, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll1 == 4){
-                image(dice4, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll1 == 5){
-                image(dice5, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll1 == 6){
-                image(dice6, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
-            }
-            // Second dice
-            if(diceRoll2 == 1){
-                image(dice1, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll2 == 2){
-                image(dice2, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll2 == 3){
-                image(dice3, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll2 == 4){
-                image(dice4, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll2 == 5){
-                image(dice5, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-            else if(diceRoll2 == 6){
-                image(dice6, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
-            }
-    }
+    
 
     endTurn(){
         if(playerTurn < playerQTY - 1){
@@ -214,6 +177,75 @@ class Player{
 
     update(){
         this.draw();
-        this.drawDice();
     }
+
+    checkHoldings(colorGroup) {
+        let colorGroupNumber;
+        switch (colorGroup) {
+            case "brown":
+                colorGroupNumber = 0;
+                break;
+            case "skyBlue":
+                colorGroupNumber = 1;
+                break;
+            case "darkOrchid":
+                colorGroupNumber = 2;
+                break;
+            case "orange":
+                colorGroupNumber = 3;
+                break;
+            case "red":
+                colorGroupNumber = 4;
+                break;
+            case "yellow":
+                colorGroupNumber = 5;
+                break;
+            case "green":
+                colorGroupNumber = 6;
+                break;
+            case "blue":
+                colorGroupNumber = 7;
+                break;
+        
+            default:
+                break;
+        }
+        let checkNumber = 0;
+        // 0 = brown, 1 = skyBlue, 2 = darkOrchid, 3 = orange, 4 = red, 5 = yellow, 6 = green, 7 = blue
+        //this.streetGroupOwn = [false, false, false, false, false, false, false, false];
+        for (let i = 0; i < board.coloredStreets.length; i++) {
+
+            if(colorGroup == board.coloredStreets[i].colorGroup) {
+
+                if(board.coloredStreets[i].owner == this) {
+
+                    checkNumber++;
+
+                }
+
+            }
+            
+        }
+        if(colorGroup == "brown" || colorGroup == "blue") {
+
+            if(checkNumber == 2){
+
+                this.streetGroupOwn[colorGroupNumber] = true;
+
+            }
+
+        } else {
+
+            if(checkNumber == 3){
+
+                this.streetGroupOwn[colorGroupNumber] = true;
+
+            }
+
+        }
+
+    }
+
+
+
 }
