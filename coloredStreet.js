@@ -4,6 +4,7 @@ class ColoredStreet {
 
         this.nameOfStreet = name;
         this.colorGroup = colorGroup;
+        this.colorGroupNumber;
 
         this.price = numbersList[0];
         this.pricePerHouse = numbersList[1];
@@ -15,8 +16,12 @@ class ColoredStreet {
         this.rentHotel = numbersList[7];
         this.mortagage = numbersList[0] / 2;
 
-        this.owner = "bank";
-        this.buildings = "none";
+        this.owner = bank;
+        this.ownerColor;
+        //0 = ingen, 1 = 1 hus... , 5 = hotel
+        this.buildings = 0;
+
+        this.setColorGroup(this.colorGroup);
 
     }
 
@@ -39,10 +44,7 @@ class ColoredStreet {
                 
                 return this.pricePerHouse;
 
-                //fffffffffffffffffffffffffffffff
-
             case "rent":
-            
                 return this.rent;
 
             case "rent1House":
@@ -78,9 +80,17 @@ class ColoredStreet {
 
     }
 
-    switchOwner(/*player*/) {
+    switchOwner(player) {
 
-        // Set new player to owner
+        this.owner = player;
+        this.ownerColor = player.color;
+
+    }
+
+    buyStreet(player) {
+
+        player.currentCredit -= this.price;
+        this.switchOwner(player);
 
     }
 
@@ -88,6 +98,38 @@ class ColoredStreet {
 
         
 
+    }
+
+    setColorGroup(colorGroup) {
+        switch (colorGroup) {
+            case "brown":
+                this.colorGroupNumber = 0;
+                break;
+            case "skyBlue":
+                this.colorGroupNumber = 1;
+                break;
+            case "darkOrchid":
+                this.colorGroupNumber = 2;
+                break;
+            case "orange":
+                this.colorGroupNumber = 3;
+                break;
+            case "red":
+                this.colorGroupNumber = 4;
+                break;
+            case "yellow":
+                this.colorGroupNumber = 5;
+                break;
+            case "green":
+                this.colorGroupNumber = 6;
+                break;
+            case "blue":
+                this.colorGroupNumber = 7;
+                break;
+        
+            default:
+                break;
+        }
     }
 
 

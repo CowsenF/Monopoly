@@ -237,9 +237,25 @@ class ColoredStreetsSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
-        //bah bah
+        if(this.ColoredStreet.owner.name == bank.name) {
+            eventBox.buyingColoredStreet(this.ColoredStreet, player, this.price);
+
+        } else if(this.ColoredStreet.owner.name != bank.name) {
+            
+            if(this.ColoredStreet.buildings == 0 && this.ColoredStreet.colorGroup) {
+                print(this.ColoredStreet.getData("rent"));
+                this.ColoredStreet.owner.currentCredit += this.ColoredStreet.getData("rent");
+                player.currentCredit -= this.ColoredStreet.getData("rent");
+
+            } else if(this.ColoredStreet.buildings == 0) {}
+            
+
+        }
+
+
+        
 
     }
 
@@ -264,6 +280,30 @@ class ColoredStreetsSpace extends Space {
             textSize(14);
             text(this.name, 0 , 0);
             text("$" + this.price, 0 , 20);
+
+            if(this.ColoredStreet.owner.name != bank.name) {
+                for (let i = 0; i < 8; i++) {
+
+                    if(i != this.ColoredStreet.colorGroupNumber) {
+                        continue;
+                    }
+                    
+                    if(this.ColoredStreet.owner.streetGroupOwn[i] == true) {
+                        this.ColoredStreet.ownerColor.setAlpha(50);
+                        fill(this.ColoredStreet.ownerColor);
+                        rect(0, 0, (boardSizeX / 13) * 2, (boardSizeY / 13) * 1);
+
+                    }
+                    
+                }
+                fill(0);
+                rect(0, -25, (boardSizeX / 13) * 2, 10);
+                this.ColoredStreet.ownerColor.setAlpha(255);
+                fill(this.ColoredStreet.ownerColor);
+                textSize(12);
+                text(this.ColoredStreet.owner.name, 0 , -21);
+                
+            }
 
             pop();
 
@@ -301,6 +341,33 @@ class ColoredStreetsSpace extends Space {
             textSize(14);
             //text(this.name, 0 , -30);
             text("$" + this.price, 0 , 50);
+
+            if(this.ColoredStreet.owner.name != bank.name) {
+                
+                for (let i = 0; i < 8; i++) {
+
+                    if(i != this.ColoredStreet.colorGroupNumber) {
+                        continue;
+                    }
+                    
+                    if(this.ColoredStreet.owner.streetGroupOwn[i] == true) {
+                        this.ColoredStreet.ownerColor.setAlpha(50);
+                        fill(this.ColoredStreet.ownerColor);
+                        rect(0 - (boardSizeX / 26), 0 - (boardSizeY / 13), (boardSizeX / 13) * 1, (boardSizeY / 13) * 2);
+
+                    }
+                    
+                }
+
+                fill(0);
+                rect(0 - (boardSizeX / 26), 0 - (boardSizeY / 13), (boardSizeX / 13) * 1, 10);
+                this.ColoredStreet.ownerColor.setAlpha(255);
+                fill(this.ColoredStreet.ownerColor);
+                textSize(12);
+                text(this.ColoredStreet.owner.name, 0 , -boardSizeY / 13 + 9);
+                
+
+            }
 
             pop();
 
@@ -497,8 +564,6 @@ class GoToJailSpace extends Space {
         player.positionID = 10;
         player.playerState = 1;
         player.jailTurn = 0;
-
-        print("this player is in jail");
 
     }
 

@@ -8,7 +8,8 @@ let gameState = 0;
 //boardState 1 betyder at der er en bestem menu open.
 let boardState = 0;
 
-let buttonList = [];
+let eventBox;
+let bank;
 
 let boardSizeX = 800;
 let boardSizeY = 800;
@@ -34,7 +35,7 @@ function setup() {
 
   createCanvas(1600, 800);
   
-  
+  bank = new Bank();
 
   // indsæet spillere i player[] udfra playerQTY der bestemmer antallet af spillere.
   // denne funktion køre kun en gang på grund af playersSet
@@ -44,8 +45,9 @@ function setup() {
     }
     playersSet = true;
   }
+  
+  eventBox = new EventBox();
 
-  buttonList.push(new Button(boardSizeX/2, boardSizeY/2, 60, 30, player, "rollDice"));
 
 }
 
@@ -75,54 +77,84 @@ function draw() {
 
   // dice box and roll text
   if(gameState == 1){
-  push();
-  fill(191, 219, 174);
-  rect(boardSizeX/2 - 60, boardSizeY/2 - 30, 120, 60);
-  textSize(15);
-  fill(0);
-  textAlign(CENTER, CENTER);
-  text('Click to roll dices', boardSizeX/2, boardSizeY/2 - 40);
-  pop();
-
-
-
-  for (let i = 0; i < playerQTY; i++) {
-
     push();
     fill(191, 219, 174);
-    strokeWeight(2);
-    
-    if(i == 0) {
-      
-      translate(boardSizeX, 0);
-      
-
-    } else if (i == 1) {
-
-      translate(boardSizeX + boardSizeX - boardSizeX / 3, 0);
-      
-    } else if (i == 2)  {
-
-      translate(boardSizeX + boardSizeX - boardSizeX / 3, boardSizeY / 13 * 9);
-      
-    } else if (i == 3)  {
-
-      translate(boardSizeX, boardSizeY / 13 * 9);
-      
-    }
-    rect(0, 0, boardSizeX / 3, boardSizeY / 13 * 4);
-    
-    
+    rect(boardSizeX/2 - 60, boardSizeY/2 - 30, 120, 60);
     textSize(15);
     fill(0);
     textAlign(CENTER, CENTER);
-    text('Player ' + (player[i].playerNR + 1), boardSizeX / 6, 40);
-    text('Money: ' + (player[i].currentCredit), boardSizeX / 6, 60);
+    text('Click to roll dices', boardSizeX/2, boardSizeY/2 - 40);
     pop();
 
-    
 
-  }
+
+    for (let i = 0; i < playerQTY; i++) {
+
+      push();
+      fill(191, 219, 174);
+      strokeWeight(2);
+      
+            
+      translate(boardSizeX, 0 + i * boardSizeY / 4);
+
+      rect(0, 0, boardSizeX / 3, boardSizeY / 4)
+      
+      textSize(15);
+      fill(0);
+      textAlign(CENTER, CENTER);
+      text('Player ' + (player[i].playerNR + 1), boardSizeX / 6, 40);
+      text('Money: ' + (player[i].currentCredit), boardSizeX / 6, 60);
+      pop();
+
+      
+      // the drawn images depends of the rolls of each dice, and is shown on the board to view player roll
+      imageMode(CENTER);
+      // First dice
+      
+      if(diceRoll1 == 1){
+          image(dice1, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll1 == 2){
+          image(dice2, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll1 == 3){
+          image(dice3, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll1 == 4){
+          image(dice4, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll1 == 5){
+          image(dice5, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll1 == 6){
+          image(dice6, boardSizeX/2 - 30, boardSizeY/2, 50, 50);
+      }
+      // Second dice
+      if(diceRoll2 == 1){
+          image(dice1, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll2 == 2){
+          image(dice2, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll2 == 3){
+          image(dice3, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll2 == 4){
+          image(dice4, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll2 == 5){
+          image(dice5, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+      else if(diceRoll2 == 6){
+          image(dice6, boardSizeX/2 + 30, boardSizeY/2, 50, 50);
+      }
+
+      eventBox.update();
+
+
+      
+
+    }
 
   
 
@@ -154,8 +186,6 @@ function update() {
   for (let i = 0; i < playerQTY; i++) {
     player[i].update();
   }
-
-  setButtons();
   
 
   // update player
@@ -164,57 +194,42 @@ function update() {
 
 }
 
-function setButtons() {
-
-  if(gameState == 0) {
-
-    //vælg spillere
-
-  }
-  
-  if(gameState == 1 && boardState == 0) {
-
-    for (let i = 0; i < buttonList.length; i++) {
-
-      if(buttonList[i].name == "rollDice") {
-
-        buttonList[i].canBePressed = true;
-        continue;
-
-      }
-
-      buttonList[i].canBePressed = false;
-      
-    }
-
-  }
-  
-
-}
-
 function mousePressed(){
   // when mouse is clicked, check if any button from the button class fufill the condition to activate
-  for (let i = 0; i < buttonList.length; i++) {
-    buttonList[i].checkForPress();
-   }
-  //VI SKAL LIGE FINDE UD AF HVOR DET HER SKAL STÅ:
-  // jeg smed det ind i rollDice() i player.js :)
   
   if(gameState == 0){
     if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 250 && mouseY < 290){
-        playerQTY = 2;
-        setUpBoard();
-        print('2 spillere');
+      playerQTY = 2;
+      setUpBoard();
     }
     else if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 305 && mouseY < 345){
       playerQTY = 3;
       setUpBoard();
-      print('2 spillere');
     }
     else if(mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > 360 && mouseY < 400){
-    playerQTY = 4;
-    setUpBoard();
-    print('2 spillere');
+      playerQTY = 4;
+      setUpBoard();
     }
+  } else if(gameState == 1 && boardState == 0) {
+
+    if(mouseX > boardSizeX/2 - 60 && mouseX < boardSizeX + 60 && mouseY > boardSizeY/2 - 30 && mouseY < boardSizeY + 30) {
+
+      for (let i = 0; i < player.length; i++) {
+        if(playerTurn == i) {
+
+          player[i].rollDice();
+          break;
+
+        }
+        
+      }
+
+    }
+
+  } else if(gameState == 1 && boardState == 1) {
+
+    eventBox.buttonPressed();
+
   }
+
 }

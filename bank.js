@@ -2,6 +2,7 @@ class Bank {
 
     constructor() {
 
+        this.name = "bank";
         this.availableHouses = 32;
         this.availableHotels = 12;
 
