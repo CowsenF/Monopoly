@@ -400,9 +400,9 @@ class ChanceSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
-        //player pick a card
+        chanceDeck.drawChanceCard(player, board);
 
     }
 
@@ -455,9 +455,10 @@ class CommunityChestSpace extends Space {
 
     }
 
-    landedOn(/*player*/) {
+    landedOn(player) {
 
         //player pick a card
+        chanceDeck.drawCommunityCard(player, board);
 
     }
 
@@ -561,9 +562,9 @@ class GoToJailSpace extends Space {
 
     landedOn(player) {
 
-        player.positionID = 10;
-        player.playerState = 1;
-        player.jailTurn = 0;
+        player.goToJail();
+
+        
 
     }
 
