@@ -20,6 +20,8 @@ class Player{
         // 0 = brown, 1 = skyBlue, 2 = darkOrchid, 3 = orange, 4 = red, 5 = yellow, 6 = green, 7 = blue
         this.streetGroupOwn = [false, false, false, false, false, false, false, false];
 
+        this.railroadOwned = 0;
+
 
         this.name = `${"player "}${playerNR + 1}`;
 

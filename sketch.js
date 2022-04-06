@@ -254,11 +254,31 @@ function mousePressed(){
       }
 
     }
+    //Køb / sælg huse
+    for (let i = 0; i < board.spaceList.length; i++) {
+      
+      if(board.spaceList[i].constructor == ColoredStreetsSpace) {
 
-  } else if(gameState == 1 && boardState == 1) {
+        
+        
+
+        board.spaceList[i].buttonPressed();
+
+
+      }
+      
+      
+    }
+
+    
+
+  }
+  
+  if(gameState == 1 && boardState == 1) {
 
     eventBox.buttonPressed();
 
   }
+
 
 }

@@ -6,6 +6,8 @@ class ColoredStreet {
         this.colorGroup = colorGroup;
         this.colorGroupNumber;
 
+        this.numbersList = numbersList;
+
         this.price = numbersList[0];
         this.pricePerHouse = numbersList[1];
         this.rent = numbersList[2];
@@ -19,7 +21,6 @@ class ColoredStreet {
         this.owner = bank;
         this.ownerColor;
         //0 = ingen, 1 = 1 hus... , 5 = hotel
-        this.buildings = 0;
 
         this.setColorGroup(this.colorGroup);
 
