@@ -21,6 +21,8 @@ class Player{
         this.streetGroupOwn = [false, false, false, false, false, false, false, false];
         this.hasRolled = false;
 
+        this.railroadOwned = 0;
+
 
         this.name = `${"player "}${playerNR + 1}`;
 

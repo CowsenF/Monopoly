@@ -272,9 +272,19 @@ function mousePressed(){
     
   } else if(gameState == 1 && boardState == 1) {
 
+    //Køb / sælg huse
+    for (let i = 0; i < board.spaceList.length; i++) {
+      
+      if(board.spaceList[i].constructor == ColoredStreetsSpace) {
+
+        
+        
+
+        board.spaceList[i].buttonPressed();
+
+
+      }   
+    }
     eventBox.buttonPressed();
-
   }
-
-
 }

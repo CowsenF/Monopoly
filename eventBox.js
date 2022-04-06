@@ -67,6 +67,19 @@ class EventBox {
 
     }
 
+    inJail(player) {
+
+
+
+    }
+
+    youNeedTosell(player) {
+
+
+
+    }
+
+
     clear() {
 
         this.title = "";
@@ -93,7 +106,7 @@ class EventBox {
         //button 1
         if(mouseX > boardSizeX + boardSizeX / 3 + boardSizeX / 3 - 60 - boardSizeX / 6 && mouseX < boardSizeX + boardSizeX / 3 + boardSizeX / 3 + 60 - boardSizeX / 6 && mouseY > boardSizeY / 2 - 30 && mouseY < boardSizeY / 2 + 30) {
 
-            if(this.eventType = 1) {
+            if(this.eventType = 1 && this.saveInfo2.currentCredit >= this.saveInfo1.getData("price")) {
 
                 this.saveInfo1.buyStreet(this.saveInfo2);
                 this.saveInfo2.checkHoldings(this.saveInfo1.colorGroup);
