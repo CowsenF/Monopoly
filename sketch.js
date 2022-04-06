@@ -270,7 +270,13 @@ function mousePressed(){
     }
     
     
-  } else if(gameState == 1 && boardState == 1) {
+  } 
+  if(gameState == 1 && boardState == 1) {
+
+    
+    eventBox.buttonPressed();
+  } 
+  if(gameState == 1 && boardState == 0) {
 
     //Køb / sælg huse
     for (let i = 0; i < board.spaceList.length; i++) {
@@ -285,6 +291,7 @@ function mousePressed(){
 
       }   
     }
-    eventBox.buttonPressed();
+
   }
+
 }

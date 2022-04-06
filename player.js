@@ -54,6 +54,7 @@ class Player{
 
         // player total roll made of dice 1 and dice 2
         this.playerRoll = this.diceRoll1 + this.diceRoll2;
+        this.playerRoll = 1;
         // this.playerRoll = 2;
         // position id changes according to total roll
 
