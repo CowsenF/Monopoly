@@ -19,6 +19,7 @@ class Player{
         this.doubleRoll = 0;
         // 0 = brown, 1 = skyBlue, 2 = darkOrchid, 3 = orange, 4 = red, 5 = yellow, 6 = green, 7 = blue
         this.streetGroupOwn = [false, false, false, false, false, false, false, false];
+        this.hasRolled = false;
 
         this.railroadOwned = 0;
 
@@ -104,7 +105,7 @@ class Player{
         diceRoll2 = player[playerTurn].diceRoll2;
 
         if(diceRoll1 != diceRoll2){
-            this.endTurn();
+            diceHasBeenRolled = true;
         }
         else{
             if(this.doubleRoll == 3){
@@ -160,6 +161,7 @@ class Player{
     
 
     endTurn(){
+        diceHasBeenRolled = false;
         if(playerTurn < playerQTY - 1){
             playerTurn += 1;
         }  
@@ -177,8 +179,27 @@ class Player{
         pop();
     }
 
+    drawEndturnBox(){
+        push();
+        
+        if(diceHasBeenRolled == false || boardState == 1){
+            fill(120);
+        }
+        else{
+            fill(255);
+        }
+        rectMode(CENTER);
+        rect(boardSizeX / 2, boardSizeY / 2 + 200, 120, 60);
+        fill(0);
+        textAlign(CENTER)
+        textSize(25);
+        text("End turn", boardSizeX / 2, boardSizeY / 2 + 208);
+        pop();
+    }
+
     update(){
         this.draw();
+        this.drawEndturnBox();
     }
 
     checkHoldings(colorGroup) {

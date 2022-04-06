@@ -93,8 +93,15 @@ class EventBox {
 
     }
 
-    buttonPressed() {
+    // End turn
+    endTurnPressed(){
+        if(mouseX > boardSizeX + boardSizeX/3 + boardSizeX / 2 - 55 - boardSizeX / 6 && mouseX < boardSizeX + boardSizeX / 3 + boardSizeX / 2 - 55 - boardSizeX / 6 + 120 && mouseY > boardSizeY/2 + 85 && mouseY < boardSizeY/2 + 85 + 60){
+            print("Du ramte!");
+            player.endTurn();
+        }
+    }
 
+    buttonPressed() {
         
         //button 1
         if(mouseX > boardSizeX + boardSizeX / 3 + boardSizeX / 3 - 60 - boardSizeX / 6 && mouseX < boardSizeX + boardSizeX / 3 + boardSizeX / 3 + 60 - boardSizeX / 6 && mouseY > boardSizeY / 2 - 30 && mouseY < boardSizeY / 2 + 30) {
@@ -114,10 +121,5 @@ class EventBox {
             
             this.clear()
         }
-        
-
     }
-
-
-
 }
