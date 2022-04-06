@@ -25,6 +25,7 @@ let playerTurn = 0;
 
 let diceRoll1 = 0;
 let diceRoll2 = 0;
+let diceHasBeenRolled = false;
 
 function preload(){
   dice1 = loadImage('images/dice-six-faces1.png');
@@ -84,7 +85,13 @@ function draw() {
   // dice box and roll text
   if(gameState == 1){
   push();
-  fill(191, 219, 174);
+  if(diceHasBeenRolled == false){
+    fill(191, 219, 174);
+  }
+  else if(boardState == 1 || diceHasBeenRolled == true){
+    fill(120);
+  }
+  
   rect(boardSizeX/2 - 60, boardSizeY/2 - 30, 120, 60);
   textSize(15);
   fill(0);
@@ -241,24 +248,33 @@ function mousePressed(){
     }
   } else if(gameState == 1 && boardState == 0) {
 
-    if(mouseX > boardSizeX/2 - 60 && mouseX < boardSizeX + 60 && mouseY > boardSizeY/2 - 30 && mouseY < boardSizeY + 30) {
+    if(mouseX > boardSizeX/2 - 60 && mouseX < boardSizeX + 60 && mouseY > boardSizeY/2 - 30 && mouseY < boardSizeY/2 + 30 && mouseX < boardSizeX /2 + 60) {
 
-      for (let i = 0; i < player.length; i++) {
-        if(playerTurn == i) {
-
-          player[i].rollDice();
-          break;
-
+      if(diceHasBeenRolled == false){
+        for (let i = 0; i < player.length; i++) {
+          if(playerTurn == i) {
+  
+            player[i].rollDice();
+            break;
+  
+          }
+          
         }
-        
       }
 
     }
-
+    if(mouseX > boardSizeX/2 - 60 && mouseX < boardSizeX/2 + 60 && mouseY > boardSizeY / 2 + 200 - 30 && mouseY < boardSizeY / 2 + 200 + 30){
+      if(diceHasBeenRolled == true){
+        player[playerTurn].endTurn();
+      }
+    }
+    
+    
   } else if(gameState == 1 && boardState == 1) {
 
     eventBox.buttonPressed();
 
   }
+
 
 }
