@@ -54,8 +54,6 @@ class Player{
 
         // player total roll made of dice 1 and dice 2
         this.playerRoll = this.diceRoll1 + this.diceRoll2;
-        this.playerRoll = 1;
-        // this.playerRoll = 2;
         // position id changes according to total roll
 
         // If playerState is zero (meaning free) the player may move
@@ -198,9 +196,18 @@ class Player{
         pop();
     }
 
+    winner(){
+        // Hvis en spiller har hvis antal credits på deres tur vinder de
+        if(this.currentCredit >= 5000){
+            winningPlayer = this.playerNR + 1;
+            gameState = 2;
+        }
+    }
+
     update(){
         this.draw();
         this.drawEndturnBox();
+        this.winner();
     }
 
     checkHoldings(colorGroup) {
