@@ -27,6 +27,8 @@ let diceRoll1 = 0;
 let diceRoll2 = 0;
 let diceHasBeenRolled = false;
 
+let winningPlayer = 0;
+
 function preload(){
   dice1 = loadImage('images/dice-six-faces1.png');
   dice2 = loadImage('images/dice-six-faces2.png');
@@ -197,9 +199,31 @@ function draw() {
   // console.log(board.spaceList[5]);
   
   }
+
+  if(gameState == 2){
+    push();
+    if(winningPlayer == 1){
+      fill(255, 0 , 0);
+    }
+    else if(winningPlayer == 2){
+      fill(0, 255 , 0);
+    }
+    else if(winningPlayer == 3){
+      fill(0, 0 , 255);
+    }
+    else if(winningPlayer == 4){
+      fill(0, 255 , 255);
+    }
+    stroke(0);
+    strokeWeight(5);
+    textSize(75);
+    textAlign(CENTER, CENTER);
+    text("Player " + winningPlayer + " wins!", boardSizeX/2, boardSizeY/2)
+    pop();
+  }
 }
 
-//Kan blive kladt for at lave et nyt spil.
+//Kan blive kaldt for at lave et nyt spil.
 
 //Skift navn på funktion
 function setUpBoard() {
