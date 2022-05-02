@@ -6,8 +6,6 @@ class ColoredStreet {
         this.colorGroup = colorGroup;
         this.colorGroupNumber;
 
-        this.numbersList = numbersList;
-
         this.price = numbersList[0];
         this.pricePerHouse = numbersList[1];
         this.rent = numbersList[2];
